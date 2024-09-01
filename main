@@ -1,0 +1,56 @@
+#!/bin/bash
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+current_dir="$(pwd)"
+src_path=$(dirname $(realpath "$0"))
+dir_to_make=(Images Videos Documents Archive Misc Music)
+
+echo "Organizing files in $current_dir"
+for dir in ${dir_to_make[@]}; do
+    if [[ -d "$current_dir/$dir" ]]; then
+        :
+    else
+        mkdir "$current_dir/$dir"
+    fi
+done
+
+items=()
+
+while IFS= read -r -d '' file; do
+    items+=("$file")
+done < <(find "$current_dir" -maxdepth 1 -type f -print0)
+
+for fname in "${items[@]}"; do 
+    $"$src_path/extension.sh" "$fname"
+    extension=$?
+    case "$extension" in
+        0)
+        ;;
+        1)
+            mv "$fname" "$current_dir/${dir_to_make[0]}"
+        ;;
+        2)
+            mv "$fname" "$current_dir/${dir_to_make[1]}"
+        ;;
+        3)
+            mv "$fname" "$current_dir/${dir_to_make[2]}"
+        ;;
+        4)
+            mv "$fname" "$current_dir/${dir_to_make[3]}"
+        ;;
+        5)
+            mv "$fname" "$current_dir/${dir_to_make[4]}"
+            ;;
+        6)
+            mv "$fname" "$current_dir/${dir_to_make[5]}"
+            ;;
+        *)
+            # Shouldn't happen
+            echo "Error occured."
+            ;;
+    esac
+done
+
+echo "Done organizing"
