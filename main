@@ -30,21 +30,27 @@ for fname in "${items[@]}"; do
         ;;
         1)
             mv "$fname" "$current_dir/${dir_to_make[0]}"
-        ;;
+            echo "Moving $fname to $current_dir/${dir_to_make[0]}"
+            ;;
         2)
             mv "$fname" "$current_dir/${dir_to_make[1]}"
-        ;;
+            echo "Moving $fname to $current_dir/${dir_to_make[1]}"
+            ;;
         3)
             mv "$fname" "$current_dir/${dir_to_make[2]}"
-        ;;
+            echo "Moving $fname to $current_dir/${dir_to_make[2]}"
+            ;;
         4)
             mv "$fname" "$current_dir/${dir_to_make[3]}"
-        ;;
+            echo "Moving $fname to $current_dir/${dir_to_make[3]}"
+            ;;
         5)
             mv "$fname" "$current_dir/${dir_to_make[4]}"
+            echo "Moving $fname to $current_dir/${dir_to_make[4]}"
             ;;
         6)
             mv "$fname" "$current_dir/${dir_to_make[5]}"
+            echo "Moving $fname to $current_dir/${dir_to_make[5]}"
             ;;
         *)
             # Shouldn't happen
