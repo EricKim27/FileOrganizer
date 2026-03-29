@@ -12,7 +12,7 @@ fname="$1"
 
 if [[ -f "$fname" ]]; then
     case "${fname##*.}" in
-        txt|md|rst|pdf|hwp|hwpx|xlsx|docx|csv|json|pptx|py|c|cpp|cc|h|hh)
+        txt|md|rst|pdf|hwp|hwpx|xlsx|docx|csv|json|pptx|py|c|cpp|cc|h|hh|doc)
             exit 3
             ;;
         jpg|jpeg|png|jfif|webp|gif|svg)
@@ -24,7 +24,7 @@ if [[ -f "$fname" ]]; then
         tar|gz|xz|bz2|zip|rar)
             exit 4
             ;;
-        mp3|wav)
+        mp3|wav|flac|wma)
             exit 6
             ;;
         *)
